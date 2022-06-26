@@ -165,14 +165,14 @@ h2 {
 #cam-view-background-one {
     width: 1520px;
     height: 960px;
-    background-image: url("./assets/cam_background_one.png");
+    background-image: url("./assets/cam_background_one_bordered.png");
     z-index: 1;
 }
 
 #cam-view-background-two {
     width: 1520px;
     height: 960px;
-    background-image: url("./assets/cam_background_two.png");
+    background-image: url("./assets/cam_background_two_bordered.png");
     z-index: 1;
 }
 

@@ -135,6 +135,7 @@ h2 {
 }
 
 .player {
+    width: 300px;
     height: 80px;
     background-color: rgba(36, 36, 36, 0.8);
     margin-top: 25px;
@@ -173,6 +174,10 @@ h2 {
 
 .player-boost.orange {
     background-color: rgba(228, 131, 40, 1.0);
+}
+
+.player-name {
+    font-size: 28px;
 }
 
 .player-name.blue {

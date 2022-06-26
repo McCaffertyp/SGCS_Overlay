@@ -7,6 +7,7 @@
             // Used colors:
             // Blue: #0e3660, rgba(14, 54, 96, 1.0)
             // Pink/purple: #b15bb5, rgba(177, 91, 181, 1.0)
+            const currentPlayers = {}
         </script>
         <link rel="stylesheet" href="MatchCasting.css">
     </head>
@@ -19,13 +20,13 @@
                 <div id="match-information" class="match-header match-information">
                     <div id="team-blue" class="team blue">
                         <img id="team-blue-logo" class="team-blue-item logo blue" src="assets/logos/teams/clear_background_dark_alien.png">
-                        <h1 id="team-blue-name" class="team-blue-item team-name blue">Galactic Cola</h1>
+                        <h1 id="team-blue-name" class="team-blue-item team-name blue">Team_Blue_Name</h1>
                         <h1 id="team-blue-score" class="team-blue-item team-score blue">0</h1>
                     </div>
                     <h1 id="match-clock" class="clock">5:00</h1>
                     <div id="team-orange" class="team orange">
                         <h1 id="team-orange-score" class="team-orange-item team-score orange">0</h1>
-                        <h1 id="team-orange-name" class="team-orange-item team-name orange">Galactic Pepsi</h1>
+                        <h1 id="team-orange-name" class="team-orange-item team-name orange">Team_Orange_Name</h1>
                         <img id="team-orange-logo" class="team-orange-item logo orange" src="assets/sgcs_logo.png">
                     </div>
                 </div>
@@ -50,7 +51,7 @@
         </div>
         <div id="left-half-screen">
             <div id="blue-players-overview" class="players-overview blue">
-                <div id="blue-player-one" class="player one blue">
+                <!-- <div id="blue-player-one" class="player one blue">
                     <div id="blue-player-boost-one-background" class="player-boost-background blue">
                         <div id="blue-player-boost-one" class="player-boost blue"></div>
                     </div>
@@ -67,12 +68,12 @@
                         <div id="blue-player-boost-three" class="player-boost blue"></div>
                     </div>
                     <h1 id="blue-player-name-three" class="player-name blue">Player_Name</h1>
-                </div>
+                </div> -->
             </div>
         </div>
         <div id="right-half-screen">
             <div id="orange-players-overview" class="players-overview orange">
-                <div id="orange-player-one" class="player one orange">
+                <!-- <div id="orange-player-one" class="player one orange">
                     <div id="orange-player-boost-one-background" class="player-boost-background orange">
                         <div id="orange-player-boost-one" class="player-boost orange"></div>
                     </div>
@@ -89,7 +90,7 @@
                         <div id="orange-player-boost-three" class="player-boost orange"></div>
                     </div>
                     <h1 id="orange-player-name-three" class="player-name orange">Player_Name</h1>
-                </div>
+                </div> -->
             </div>
         </div>
         <div id="focused-player" class="focused-player-container">
@@ -120,15 +121,17 @@
                     <h1 id="player-ball-touches-data" class="focused-player stat data">0</h1>
                 </div> -->
             </div>
-            <div id="focused-player-boost-wrap" class="focused-player boost-wrap">
-                <div id="focused-player-boost-stats" class="focused-player boost">
-                    <div id="boost-fill-full" class="focused-player boost-fill full">
-                        <div id="boost-progress-full" class="focused-player boost-progress"></div>
+            <div id="focused-player-boost-container" class="focused-player boost-container">
+                <div id="focused-player-boost-wrap" class="focused-player boost-wrap">
+                    <div id="focused-player-boost-stats" class="focused-player boost">
+                        <div id="boost-fill-full" class="focused-player boost-fill full">
+                            <div id="boost-progress-full" class="focused-player boost-progress"></div>
+                        </div>
+                        <div id="boost-fill-half" class="focused-player boost-fill half">
+                            <div id="boost-progress-half" class="focused-player boost-progress"></div>
+                        </div>
+                        <h1 id="boost-amount" class="focused-player boost-amount">33</h1>
                     </div>
-                    <div id="boost-fill-half" class="focused-player boost-fill half">
-                        <div id="boost-progress-half" class="focused-player boost-progress"></div>
-                    </div>
-                    <h1 id="boost-amount" class="focused-player boost-amount">33</h1>
                 </div>
             </div>
         </div>
@@ -276,109 +279,6 @@
             }
         };
 
-        // Utilizing the WebSocket connection info being fed in
-        // Example "game: update_state" data pack:
-        /*
-            data:
-                event: "gamestate"
-                game:
-                    arena: "cs_p"
-                    ball:
-                        location:
-                            X: 2973.76904296875
-                            Y: 4280.603515625
-                            Z: 93.89640808105469
-                            [[Prototype]]: Object
-                        speed: 4
-                        team: 1
-                        [[Prototype]]: Object
-                    hasTarget: true
-                    hasWinner: false
-                    isOT: false
-                    isReplay: false
-                    target: "Caveman_7"
-                    teams: Array(2)
-                        0:
-                            color_primary: "1873FF"
-                            color_secondary: "E5E5E5"
-                            name: "NEW ENGLND KINGS"
-                            score: 38
-                            [[Prototype]]: Object
-                        1:
-                            color_primary: "C26418"
-                            color_secondary: "E5E5E5"
-                            name: "GALACTIC POLARIS"
-                            score: 42
-                            [[Prototype]]: Object
-                    length: 2
-                    [[Prototype]]: Array(0)
-                    time_milliseconds: 2904.502197265625
-                    time_seconds: 2905
-                    winner: ""
-                    [[Prototype]]: Object
-                hasGame: true
-                match_guid: "C3F9000211ECDCA2FBE1D3AFAAE688FB"
-                players:
-                    Boomer_1:
-                        assists: 2
-                        attacker: ""
-                        boost: 0
-                        cartouches: 495
-                        demos: 3
-                        goals: 12
-                        hasCar: true
-                        id: "Boomer_1"
-                        isDead: false
-                        isPowersliding: false
-                        isSonic: false
-                        location: {
-                            X: 2048
-                            Y: -2560
-                            Z: 17.010000228881836
-                            pitch: -100
-                            roll: 0
-                            yaw: 24586
-                            [[Prototype]]: Object
-                        }
-                        name: "Boomer"
-                        onGround: true
-                        onWall: false
-                        primaryID: "0"
-                        saves: 8
-                        score: 2811
-                        shortcut: 1
-                        shots: 22
-                        speed: 44
-                        team: 0
-                        touches: 312
-                        [[Prototype]]: Object
-        */
-
-        // Example "game: goal_scored" data pack:
-        /*
-            "data": {
-                "assister": {
-                    "id": "Hound_1",
-                    "name": "Hound"
-                },
-                "ball_last_touch": {
-                    "player": "Roundhouse_6",
-                    "speed": 92.57723236083984
-                },
-                "goalspeed": 91.2959976196289,
-                "goaltime": 66,
-                "impact_location": {
-                    "X": 0.6433777809143066,
-                    "Y": 0.48326563835144043
-                },
-                "scorer": {
-                    "id": "Scout_2",
-                    "name": "Scout",
-                    "teamnum": 0
-                }
-            }
-        */
-
         $(() => {
             WsSubscribers.init(49322, true);
 
@@ -389,7 +289,7 @@
                 let screenRightHalf = document.getElementById("right-half-screen");
                 let focusedPlayer = document.getElementById("focused-player");
                 let replayOverlay = document.getElementById("replay");
-                if (d.hasGame) {
+                if (d.hasGame && !d.game.hasWinner) {
                     if (d.game.isReplay) {
                         screenFull.style.display = "none";
                         screenLeftHalf.style.display = "none";
@@ -410,12 +310,21 @@
                     focusedPlayer.style.display = "none";
                     replayOverlay.style.display = "none";
                 }
-                assignPlayerNames(d.players)
-                updateBoostMeters(d.players)
-                updateFocusedPlayer(d.game.isReplay, d.players, d.game.hasTarget, d.game.target)
-                $(".match-header-area .match-information .team.blue .team-score").text(d.game.teams[0].score)
-                $(".match-header-area .match-information .team.orange .team-score").text(d.game.teams[1].score)
-                $(".match-header-area .match-information .clock").text(convertSecondsToTime(d.game.time_seconds))
+
+                updatePlayerElements(d.players);
+                updateFocusedPlayer(d.game.isReplay, d.players, d.game.hasTarget, d.game.target);
+
+                let blueTeamScore = document.getElementById("team-blue-score");
+                let blueTeamName = document.getElementById("team-blue-name");
+                let orangeTeamScore = document.getElementById("team-orange-score");
+                let orangeTeamName = document.getElementById("team-orange-name");
+                let gameClock = document.getElementById("match-clock");
+                
+                blueTeamScore.textContent = (d.game.teams[0].score).toString();
+                blueTeamName.textContent = (d.game.teams[0].name);
+                orangeTeamScore.textContent = (d.game.teams[1].score).toString();
+                orangeTeamName.textContent = (d.game.teams[1].name);
+                gameClock.textContent = (convertSecondsToTime(d.game.time_seconds));
             });
 
             WsSubscribers.subscribe("game", "goal_scored", (d) => {
@@ -437,16 +346,40 @@
         /**
          * @param {Object[]} players
          */
-        function createPlayerElements(players) {
+        function updatePlayerElements(players) {
+            let bluePlayers = [];
+            let orangePlayers = [];
             Object.values(players).forEach(player => {
-                addPlayerDivElement(player)
+                if (player.team === 0) {
+                    bluePlayers.push(player);
+                } else {
+                    orangePlayers.push(player);
+                }
             })
+            updateTeamPlayerElements(bluePlayers, "blue");
+            updateTeamPlayerElements(orangePlayers, "orange");
+        }
+
+        /**
+         * @param {Object[]} players
+         * @param {String} teamColor
+         */
+        function updateTeamPlayerElements(players, teamColor) {
+            let childrenElementList = [];
+            for (const p of players) {
+                childrenElementList.push(updatePlayerElement(p));
+            }
+
+            let bluePlayerParentDiv = document.getElementById(`${teamColor}-players-overview`);
+            bluePlayerParentDiv.replaceChildren(...childrenElementList);
         }
 
         /**
          * @param {Object} player
+         * @return {HTMLDivElement} New element for the player
          */
-        function addPlayerDivElement(player) {
+        function updatePlayerElement(player) {
+            const maxBoostWidth = 270;
             let playerDiv = document.createElement("div");
             let playerDivBoostDiv = document.createElement("div");
             let playerBoostDiv = document.createElement("div");
@@ -467,6 +400,7 @@
             playerBoostDiv.id = `${playerTeamColor}-player-boost-${playerTeamPosId}`;
             playerBoostDiv.classList.add("player-boost");
             playerBoostDiv.classList.add(playerTeamColor);
+            playerBoostDiv.style.width = Math.round(maxBoostWidth * (player.boost / 100));
 
             playerDivNameDiv.id = `${playerTeamColor}-player-name-${playerTeamPosId}`;
             playerDivNameDiv.classList.add("player-name");
@@ -477,8 +411,7 @@
             playerDiv.appendChild(playerDivBoostDiv);
             playerDiv.appendChild(playerDivNameDiv);
 
-            let parentDiv = document.getElementById(`${playerTeamColor}-players-overview`)
-            parentDiv.appendChild(playerDiv)
+            return playerDiv
         }
 
         /**
@@ -498,83 +431,11 @@
                 case 1: return "one";
                 case 2: return "two";
                 case 3: return "three";
+                case 4: return "four";
                 case 5: return "one";
                 case 6: return "two";
                 case 7: return "three";
-            }
-        }
-
-        /**
-         * @param {Object} players
-         */
-        function assignPlayerNames(players) {
-            Object.values(players).forEach(player => {
-                switch (player.shortcut) {
-                    case 1: $(".players-overview.blue .player.one .player-name").text(player.name); break;
-                    case 2: $(".players-overview.blue .player.two .player-name").text(player.name); break;
-                    case 3: $(".players-overview.blue .player.three .player-name").text(player.name); break;
-                    case 5: $(".players-overview.orange .player.one .player-name").text(player.name); break;
-                    case 6: $(".players-overview.orange .player.two .player-name").text(player.name); break;
-                    case 7: $(".players-overview.orange .player.three .player-name").text(player.name); break;
-                    default: break;
-                }
-            })
-        }
-
-        /**
-         * @param {Object} players
-         */
-        function updateBoostMeters(players) {
-            Object.values(players).forEach(player => {
-                switch (player.shortcut) {
-                    case 1: updatePlayerBoost(1, player.boost); break;
-                    case 2: updatePlayerBoost(2, player.boost); break;
-                    case 3: updatePlayerBoost(3, player.boost); break;
-                    case 5: updatePlayerBoost(5, player.boost); break;
-                    case 6: updatePlayerBoost(6, player.boost); break;
-                    case 7: updatePlayerBoost(7, player.boost); break;
-                    default: break;
-                }
-            })
-        }
-
-        /**
-         * @param {Number} playerShortcut 1-8 representing Player 1, 2, 3 or 4 (blue team), or 5, 6, 7 or 8 (orange team).
-         * @param {Number} boost Amount of boost Player has. Multiply 270 by 0.boost to get width needed.
-         */
-        function updatePlayerBoost(playerShortcut, boost) {
-            const maxBoostWidth = 270;
-            switch (playerShortcut) {
-                case 1: {
-                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-one");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
-                case 2: {
-                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-two");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
-                case 3: {
-                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-three");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
-                case 5: {
-                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-one");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
-                case 6: {
-                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-two");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
-                case 7: {
-                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-three");
-                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
-                    break;
-                }
+                case 8: return "four";
             }
         }
 
@@ -636,5 +497,11 @@
             const clockSecondsString = clockSeconds < 10 ? `0${clockSeconds}` : clockSeconds.toString();
             return `${clockMinutes}:${clockSecondsString}`;
         };
+
+        const PlayerJoinAction = {
+            Joined: "joined",
+            Left: "left",
+            Exists: "exists"
+        }
     </script>
 </html>

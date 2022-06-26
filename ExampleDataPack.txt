@@ -1,0 +1,102 @@
+// Utilizing the WebSocket connection info being fed in
+// Example "game: update_state" data pack:
+/*
+     data:
+        event: "gamestate"
+        game:
+            arena: "cs_p"
+            ball:
+                location:
+                    X: 2973.76904296875
+                    Y: 4280.603515625
+                    Z: 93.89640808105469
+                    [[Prototype]]: Object
+                speed: 4
+                team: 1
+                [[Prototype]]: Object
+            hasTarget: true
+            hasWinner: false
+            isOT: false
+            isReplay: false
+            target: "Caveman_7"
+            teams: Array(2)
+                0:
+                    color_primary: "1873FF"
+                    color_secondary: "E5E5E5"
+                    name: "NEW ENGLND KINGS"
+                    score: 38
+                    [[Prototype]]: Object
+                1:
+                    color_primary: "C26418"
+                    color_secondary: "E5E5E5"
+                    name: "GALACTIC POLARIS"
+                    score: 42
+                    [[Prototype]]: Object
+            length: 2
+            [[Prototype]]: Array(0)
+            time_milliseconds: 2904.502197265625
+            time_seconds: 2905
+            winner: ""
+            [[Prototype]]: Object
+        hasGame: true
+        match_guid: "C3F9000211ECDCA2FBE1D3AFAAE688FB"
+        players:
+            Boomer_1:
+                assists: 2
+                attacker: ""
+                boost: 0
+                cartouches: 495
+                demos: 3
+                goals: 12
+                hasCar: true
+                id: "Boomer_1"
+                isDead: false
+                isPowersliding: false
+                isSonic: false
+                location: {
+                    X: 2048
+                    Y: -2560
+                    Z: 17.010000228881836
+                    pitch: -100
+                    roll: 0
+                    yaw: 24586
+                    [[Prototype]]: Object
+                }
+                name: "Boomer"
+                onGround: true
+                onWall: false
+                primaryID: "0"
+                saves: 8
+                score: 2811
+                shortcut: 1
+                shots: 22
+                speed: 44
+                team: 0
+                touches: 312
+                [[Prototype]]: Object
+*/
+
+// Example "game: goal_scored" data pack:
+/*
+    "data": {
+        "assister": {
+            "id": "Hound_1",
+            "name": "Hound"
+        },
+        "ball_last_touch": {
+            "player": "Roundhouse_6",
+            "speed": 92.57723236083984
+        },
+        "goalspeed": 91.2959976196289,
+        "goaltime": 66,
+        "impact_location": {
+            "X": 0.6433777809143066,
+            "Y": 0.48326563835144043
+        },
+        "scorer": {
+            "id": "Scout_2",
+            "name": "Scout",
+            "teamnum": 0
+        }
+    }
+*/

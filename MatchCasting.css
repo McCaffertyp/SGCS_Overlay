@@ -188,25 +188,16 @@ h2 {
     margin-right: 10px;
 }
 
-.focused-player-container {
+.focused-player.info {
     position: absolute;
     display: flex;
     flex-direction: row;
-    width: 450px;
-    right: 50px;
-    bottom: 50px;
-    padding: 15px;
-    background-color: rgb(35, 15, 36, 1.0);
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
-    border-top-right-radius: 140px;
-    border-bottom-right-radius: 140px;
-}
-
-.focused-player.info {
-    display: flex;
-    flex-direction: column;
-    width: 280px;
+    align-items: center;
+    height: 60px;
+    left: 0px;
+    bottom: 0px;
+    background-color: rgba(35, 15, 36, 1.0);
+    border-top-right-radius: 16px;
 }
 
 .focused-player.stat-container {
@@ -215,22 +206,38 @@ h2 {
     margin: 5px;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid white;
 }
 
 .focused-player.name {
-    border-bottom: 2px solid white;
+    font-size: 32px;
+    padding-left: 20px;
+    padding-right: 25px;
 }
 
 .focused-player.stat {
     font-size: 24px;
+    padding-right: 15px;
+}
+
+.focused-player.boost-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    right: 50px;
+    bottom: 50px;
+    padding: 15px;
+    background-color: rgba(35, 15, 36, 1.0);
+    border-radius: 120px;
 }
 
 .focused-player.boost-wrap {
     display: flex;
     width: 150px;
     height: 150px;
-    margin-left: 25px;
     background: rgba(199, 199, 199, 0.7);
     border-radius: 50%;
     align-self: center;
@@ -271,14 +278,14 @@ h2 {
 .focused-player.boost-wrap .boost-amount {
     display: flex;
     position: absolute;
-    width: 122px;
-    height: 122px;
+    width: 115px;
+    height: 115px;
     justify-content: center;
     align-items: center;
-    margin-top: 14px;
-    margin-left: 14px;
+    margin-top: 18px;
+    margin-left: 18px;
     color: white;
-    background-color: rgb(35, 15, 36, 1.0);
+    background-color: rgba(35, 15, 36, 1.0);
     border-radius: 50%;
     line-height: 120px;
     text-align: center;
@@ -291,10 +298,10 @@ h2 {
     position: absolute;
     width: 75px;
     height: 75px;
-    right: 13px;
-    bottom: 59px;
+    right: 40px;
+    bottom: 40px;
     content: "";
-    background-color: rgb(35, 15, 36, 1.0);
+    background-color: rgba(35, 15, 36, 1.0);
     border-bottom-right-radius: 32px;
 }
 
@@ -349,7 +356,7 @@ h2 {
 #full-screen {
     width: 1920px;
     height: 1080px;
-    display: flex;
+    display: none;
     justify-content: center;
 }
 
@@ -359,7 +366,7 @@ h2 {
     top: 0px;
     width: 960px;
     height: 1080px;
-    display: flex;
+    display: none;
     align-items: center;
 }
 
@@ -369,16 +376,20 @@ h2 {
     top: 0px;
     width: 960px;
     height: 1080px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
+}
+
+#focused-player {
+    display: none;
 }
 
 #replay {
     position: absolute;
     width: 1920px;
     height: 1080px;
-    display: flex;
+    display: none;
     justify-content: center;
 }
 

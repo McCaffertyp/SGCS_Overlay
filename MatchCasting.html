@@ -1,0 +1,640 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+            // Web link for just helpful follow
+            // https://www.reddit.com/r/RocketLeagueEsports/comments/huszj4/how_to_make_your_own_custom_broadcast_overlay/
+            
+            // Used colors:
+            // Blue: #0e3660, rgba(14, 54, 96, 1.0)
+            // Pink/purple: #b15bb5, rgba(177, 91, 181, 1.0)
+        </script>
+        <link rel="stylesheet" href="MatchCasting.css">
+    </head>
+    <body>
+        <div id="full-screen">
+            <div id="match-header" class="match-header-area">
+                <div id="match-title" class="match-header match-title">
+                    <h1 id="match-title-text">SGCS SUMMER CONSTELLATIONS | DAY 1 | WINNERS ROUND 1</h1>
+                </div>
+                <div id="match-information" class="match-header match-information">
+                    <div id="team-blue" class="team blue">
+                        <img id="team-blue-logo" class="team-blue-item logo blue" src="assets/logos/teams/clear_background_dark_alien.png">
+                        <h1 id="team-blue-name" class="team-blue-item team-name blue">Galactic Polaris</h1>
+                        <h1 id="team-blue-score" class="team-blue-item team-score blue">0</h1>
+                    </div>
+                    <h1 id="match-clock" class="clock">5:00</h1>
+                    <div id="team-orange" class="team orange">
+                        <h1 id="team-orange-score" class="team-orange-item team-score orange">0</h1>
+                        <h1 id="team-orange-name" class="team-orange-item team-name orange">Galactic Apollo</h1>
+                        <img id="team-orange-logo" class="team-orange-item logo orange" src="assets/sgcs_logo.png">
+                    </div>
+                </div>
+                <div id="series-status" class="match-header match-series">
+                    <div id="team-blue-series" class="series-item series-scorebar blue">
+                        <!-- <div id="series-match-end-blue" class="series-match-empty"></div> -->
+                        <!-- <div id="series-match-game3" class="series-match-empty blue"></div> -->
+                        <div id="series-match-end-blue" class="series-match-empty blue"></div>
+                        <div id="series-match-game2" class="series-match-empty blue"></div>
+                        <div id="series-match-game1" class="series-match-empty blue"></div>
+                    </div>
+                    <h2 id="series-information" class="series-item">GAME 1 | BEST OF 5</h2>
+                    <div id="team-orange-series" class="series-item series-scorebar orange">
+                        <div id="series-match-game1" class="series-match-empty orange"></div>
+                        <div id="series-match-game2" class="series-match-empty orange"></div>
+                        <div id="series-match-end-orange" class="series-match-empty orange"></div>
+                        <!-- <div id="series-match-game3" class="series-match-empty orange"></div> -->
+                        <!-- <div id="series-match-end-orange" class="series-match-empty"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="left-half-screen">
+            <div id="blue-players-overview" class="players-overview blue">
+                <div id="blue-player-one" class="player one blue">
+                    <div id="blue-player-boost-one-background" class="player-boost-background blue">
+                        <div id="blue-player-boost-one" class="player-boost blue"></div>
+                    </div>
+                    <h1 id="blue-player-name-one" class="player-name blue">Player_Name</h1>
+                </div>
+                <div id="blue-player-two" class="player two blue">
+                    <div id="blue-player-boost-two-background" class="player-boost-background blue">
+                        <div id="blue-player-boost-two" class="player-boost blue"></div>
+                    </div>
+                    <h1 id="blue-player-name-two" class="player-name blue">Player_Name</h1>
+                </div>
+                <div id="blue-player-three" class="player three blue">
+                    <div id="blue-player-boost-three-background" class="player-boost-background blue">
+                        <div id="blue-player-boost-three" class="player-boost blue"></div>
+                    </div>
+                    <h1 id="blue-player-name-three" class="player-name blue">Player_Name</h1>
+                </div>
+            </div>
+        </div>
+        <div id="right-half-screen">
+            <div id="orange-players-overview" class="players-overview orange">
+                <div id="orange-player-one" class="player one orange">
+                    <div id="orange-player-boost-one-background" class="player-boost-background orange">
+                        <div id="orange-player-boost-one" class="player-boost orange"></div>
+                    </div>
+                    <h1 id="orange-player-name-one" class="player-name orange">Player_Name</h1>
+                </div>
+                <div id="orange-player-two" class="player two orange">
+                    <div id="orange-player-boost-two-background" class="player-boost-background orange">
+                        <div id="orange-player-boost-two" class="player-boost orange"></div>
+                    </div>
+                    <h1 id="orange-player-name-two" class="player-name orange">Player_Name</h1>
+                </div>
+                <div id="orange-player-three" class="player three orange">
+                    <div id="orange-player-boost-three-background" class="player-boost-background orange">
+                        <div id="orange-player-boost-three" class="player-boost orange"></div>
+                    </div>
+                    <h1 id="orange-player-name-three" class="player-name orange">Player_Name</h1>
+                </div>
+            </div>
+        </div>
+        <div id="focused-player" class="focused-player-container">
+            <div id="focused-player-stats" class="focused-player info">
+                <h1 id="player-name" class="focused-player name">Player_Name</h1>
+                <div id="player-score" class="focused-player stat-container score">
+                    <h1 id="player-score-text" class="focused-player stat text">Score</h1>
+                    <h1 id="player-score-data" class="focused-player stat data">0</h1>
+                </div>
+                <div id="player-goals" class="focused-player stat-container goals">
+                    <h1 id="player-goals-text" class="focused-player stat text">Goals</h1>
+                    <h1 id="player-goals-data" class="focused-player stat data">0</h1>
+                </div>
+                <div id="player-shots" class="focused-player stat-container shots">
+                    <h1 id="player-shots-text" class="focused-player stat text">Shots</h1>
+                    <h1 id="player-shots-data" class="focused-player stat data">0</h1>
+                </div>
+                <div id="player-assists" class="focused-player stat-container assists">
+                    <h1 id="player-assists-text" class="focused-player stat text">Assists</h1>
+                    <h1 id="player-assists-data" class="focused-player stat data">0</h1>
+                </div>
+                <div id="player-saves" class="focused-player stat-container saves">
+                    <h1 id="player-saves-text" class="focused-player stat text">Saves</h1>
+                    <h1 id="player-saves-data" class="focused-player stat data">0</h1>
+                </div>
+                <!-- <div id="player-ball-touches" class="focused-player stat-container ball-touches">
+                    <h1 id="player-ball-touches-text" class="focused-player stat text">Ball Touches</h1>
+                    <h1 id="player-ball-touches-data" class="focused-player stat data">0</h1>
+                </div> -->
+            </div>
+            <div id="focused-player-boost-wrap" class="focused-player boost-wrap">
+                <div id="focused-player-boost-stats" class="focused-player boost">
+                    <div id="boost-fill-full" class="focused-player boost-fill full">
+                        <div id="boost-progress-full" class="focused-player boost-progress"></div>
+                    </div>
+                    <div id="boost-fill-half" class="focused-player boost-fill half">
+                        <div id="boost-progress-half" class="focused-player boost-progress"></div>
+                    </div>
+                    <h1 id="boost-amount" class="focused-player boost-amount">33</h1>
+                </div>
+            </div>
+        </div>
+        <div id="replay" class="replay-container replay">
+            <div id="replay-header" class="replay-header replay">
+                <div id="replay-header-indicator" class="replay-indicator replay">
+                    <div id="replay-header-red-dot" class="replay-red-dot replay"></div>
+                    <h1 id="replay-header-text" class="replay-header-text replay">Replay</h1>
+                </div>
+                <h1 id="scorer-player-name">Player_Name</h1>
+            </div>
+            <div id="replay-footer" class="replay-footer replay">
+                <div id="extra-goal-info" class="replay-extra-goal-info">
+                    <h1 id="scored-ball-speed">Ball_Speed</h1>
+                    <h1 id="assister-player-name">Assist_Player_Name</h1>
+                </div>
+                <div id="replay-footer-indicator" class="replay-indicator replay">
+                    <div id="replay-footer-red-dot" class="replay-red-dot replay"></div>
+                    <h1 id="replay-footer-text" class="replay-footer-text replay">Replay</h1>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        // Weblink for below const
+        // https://gitlab.com/bakkesplugins/sos/sos-ws-relay/-/snippets/1996971
+        const WsSubscribers = {
+            __subscribers: {},
+            websocket: undefined,
+            webSocketConnected: false,
+            registerQueue: [],
+            init: function(port, debug, debugFilters) {
+                port = port || 49322;
+                debug = debug || false;
+                if (debug) {
+                    if (debugFilters !== undefined) {
+                        console.warn("WebSocket Debug Mode enabled with filtering. Only events not in the filter list will be dumped");
+                    } else {
+                        console.warn("WebSocket Debug Mode enabled without filters applied. All events will be dumped to console");
+                        console.warn("To use filters, pass in an array of 'channel:event' strings to the second parameter of the init function");
+                    }
+                }
+                WsSubscribers.webSocket = new WebSocket("ws://localhost:" + port);
+                WsSubscribers.webSocket.onmessage = function (event) {
+                    let jEvent = JSON.parse(event.data);
+                    if (!jEvent.hasOwnProperty('event')) {
+                        return;
+                    }
+                    let eventSplit = jEvent.event.split(':');
+                    let channel = eventSplit[0];
+                    let event_event = eventSplit[1];
+                    if (debug) {
+                        if (!debugFilters) {
+                            console.log(channel, event_event, jEvent);
+                        } else if (debugFilters && debugFilters.indexOf(jEvent.event) < 0) {
+                            console.log(channel, event_event, jEvent);
+                        }
+                    }
+                    WsSubscribers.triggerSubscribers(channel, event_event, jEvent.data);
+                };
+                WsSubscribers.webSocket.onopen = function () {
+                    WsSubscribers.triggerSubscribers("ws", "open");
+                    WsSubscribers.webSocketConnected = true;
+                    WsSubscribers.registerQueue.forEach((r) => {
+                        WsSubscribers.send("wsRelay", "register", r);
+                    });
+                    WsSubscribers.registerQueue = [];
+                };
+                WsSubscribers.webSocket.onerror = function () {
+                    WsSubscribers.triggerSubscribers("ws", "error");
+                    WsSubscribers.webSocketConnected = false;
+                };
+                WsSubscribers.webSocket.onclose = function () {
+                    WsSubscribers.triggerSubscribers("ws", "close");
+                    WsSubscribers.webSocketConnected = false;
+                };
+            },
+            /**
+             * Add callbacks for when certain events are thrown
+             * Execution is guaranteed to be in First In First Out order
+             * @param channels
+             * @param events
+             * @param callback
+             */
+            subscribe: function(channels, events, callback) {
+                if (typeof channels === "string") {
+                    let channel = channels;
+                    channels = [];
+                    channels.push(channel);
+                }
+                if (typeof events === "string") {
+                    let event = events;
+                    events = [];
+                    events.push(event);
+                }
+                channels.forEach(function(c) {
+                    events.forEach(function (e) {
+                        if (!WsSubscribers.__subscribers.hasOwnProperty(c)) {
+                            WsSubscribers.__subscribers[c] = {};
+                        }
+                        if (!WsSubscribers.__subscribers[c].hasOwnProperty(e)) {
+                            WsSubscribers.__subscribers[c][e] = [];
+                            if (WsSubscribers.webSocketConnected) {
+                                WsSubscribers.send("wsRelay", "register", `${c}:${e}`);
+                            } else {
+                                WsSubscribers.registerQueue.push(`${c}:${e}`);
+                            }
+                        }
+                        WsSubscribers.__subscribers[c][e].push(callback);
+                    });
+                })
+            },
+            clearEventCallbacks: function (channel, event) {
+                if (WsSubscribers.__subscribers.hasOwnProperty(channel) && WsSubscribers.__subscribers[channel].hasOwnProperty(event)) {
+                    WsSubscribers.__subscribers[channel] = {};
+                }
+            },
+            triggerSubscribers: function (channel, event, data) {
+                if (WsSubscribers.__subscribers.hasOwnProperty(channel) && WsSubscribers.__subscribers[channel].hasOwnProperty(event)) {
+                    WsSubscribers.__subscribers[channel][event].forEach(function(callback) {
+                        if (callback instanceof Function) {
+                            callback(data);
+                        }
+                    });
+                }
+            },
+            send: function (channel, event, data) {
+                if (typeof channel !== 'string') {
+                    console.error("Channel must be a string");
+                    return;
+                }
+                if (typeof event !== 'string') {
+                    console.error("Event must be a string");
+                    return;
+                }
+                if (channel === 'local') {
+                    this.triggerSubscribers(channel, event, data);
+                } else {
+                    let cEvent = channel + ":" + event;
+                    WsSubscribers.webSocket.send(JSON.stringify({
+                        'event': cEvent,
+                        'data': data
+                    }));
+                }
+            }
+        };
+
+        // Utilizing the WebSocket connection info being fed in
+        // Example "game: update_state" data pack:
+        /*
+            data:
+                event: "gamestate"
+                game:
+                    arena: "cs_p"
+                    ball:
+                        location:
+                            X: 2973.76904296875
+                            Y: 4280.603515625
+                            Z: 93.89640808105469
+                            [[Prototype]]: Object
+                        speed: 4
+                        team: 1
+                        [[Prototype]]: Object
+                    hasTarget: true
+                    hasWinner: false
+                    isOT: false
+                    isReplay: false
+                    target: "Caveman_7"
+                    teams: Array(2)
+                        0:
+                            color_primary: "1873FF"
+                            color_secondary: "E5E5E5"
+                            name: "NEW ENGLND KINGS"
+                            score: 38
+                            [[Prototype]]: Object
+                        1:
+                            color_primary: "C26418"
+                            color_secondary: "E5E5E5"
+                            name: "GALACTIC POLARIS"
+                            score: 42
+                            [[Prototype]]: Object
+                    length: 2
+                    [[Prototype]]: Array(0)
+                    time_milliseconds: 2904.502197265625
+                    time_seconds: 2905
+                    winner: ""
+                    [[Prototype]]: Object
+                hasGame: true
+                match_guid: "C3F9000211ECDCA2FBE1D3AFAAE688FB"
+                players:
+                    Boomer_1:
+                        assists: 2
+                        attacker: ""
+                        boost: 0
+                        cartouches: 495
+                        demos: 3
+                        goals: 12
+                        hasCar: true
+                        id: "Boomer_1"
+                        isDead: false
+                        isPowersliding: false
+                        isSonic: false
+                        location: {
+                            X: 2048
+                            Y: -2560
+                            Z: 17.010000228881836
+                            pitch: -100
+                            roll: 0
+                            yaw: 24586
+                            [[Prototype]]: Object
+                        }
+                        name: "Boomer"
+                        onGround: true
+                        onWall: false
+                        primaryID: "0"
+                        saves: 8
+                        score: 2811
+                        shortcut: 1
+                        shots: 22
+                        speed: 44
+                        team: 0
+                        touches: 312
+                        [[Prototype]]: Object
+        */
+
+        // Example "game: goal_scored" data pack:
+        /*
+            "data": {
+                "assister": {
+                    "id": "Hound_1",
+                    "name": "Hound"
+                },
+                "ball_last_touch": {
+                    "player": "Roundhouse_6",
+                    "speed": 92.57723236083984
+                },
+                "goalspeed": 91.2959976196289,
+                "goaltime": 66,
+                "impact_location": {
+                    "X": 0.6433777809143066,
+                    "Y": 0.48326563835144043
+                },
+                "scorer": {
+                    "id": "Scout_2",
+                    "name": "Scout",
+                    "teamnum": 0
+                }
+            }
+        */
+
+        $(() => {
+            WsSubscribers.init(49322, true);
+
+            WsSubscribers.subscribe("game", "update_state", (d) => {
+                // console.log(d)
+                let screenFull = document.getElementById("full-screen");
+                let screenLeftHalf = document.getElementById("left-half-screen");
+                let screenRightHalf = document.getElementById("right-half-screen");
+                let focusedPlayer = document.getElementById("focused-player");
+                let replayOverlay = document.getElementById("replay");
+                if (d.hasGame) {
+                    if (d.game.isReplay) {
+                        screenFull.style.display = "none";
+                        screenLeftHalf.style.display = "none";
+                        screenRightHalf.style.display = "none";
+                        focusedPlayer.style.display = "none";
+                        replayOverlay.style.display = "flex";
+                    } else {
+                        screenFull.style.display = "flex";
+                        screenLeftHalf.style.display = "flex";
+                        screenRightHalf.style.display = "flex";
+                        focusedPlayer.style.display = "flex";
+                        replayOverlay.style.display = "none";
+                    }
+                } else {
+                    screenFull.style.display = "none";
+                    screenLeftHalf.style.display = "none";
+                    screenRightHalf.style.display = "none";
+                    focusedPlayer.style.display = "none";
+                    replayOverlay.style.display = "none";
+                }
+                assignPlayerNames(d.players)
+                updateBoostMeters(d.players)
+                updateFocusedPlayer(d.game.isReplay, d.players, d.game.hasTarget, d.game.target)
+                $(".match-header-area .match-information .team.blue .team-score").text(d.game.teams[0].score)
+                $(".match-header-area .match-information .team.orange .team-score").text(d.game.teams[1].score)
+                $(".match-header-area .match-information .clock").text(convertSecondsToTime(d.game.time_seconds))
+            });
+
+            WsSubscribers.subscribe("game", "goal_scored", (d) => {
+                // console.log(d)
+                let scorerPlayerName = document.getElementById("scorer-player-name");
+                let scoredBallSpeed = document.getElementById("scored-ball-speed");
+                let assisterPlayerName = document.getElementById("assister-player-name");
+
+                scorerPlayerName.textContent = `Scored By: ${d.scorer.name}`;
+                scoredBallSpeed.textContent = `${Math.round(d.goalspeed).toString()} KPH`;
+                if (d.assister.name) {
+                    assisterPlayerName.textContent = `Assisted By: ${d.assister.name}`;
+                } else {
+                    assisterPlayerName.style.display = "none";
+                }
+            });
+        });
+
+        /**
+         * @param {Object[]} players
+         */
+        function createPlayerElements(players) {
+            Object.values(players).forEach(player => {
+                addPlayerDivElement(player)
+            })
+        }
+
+        /**
+         * @param {Object} player
+         */
+        function addPlayerDivElement(player) {
+            let playerDiv = document.createElement("div");
+            let playerDivBoostDiv = document.createElement("div");
+            let playerBoostDiv = document.createElement("div");
+            let playerDivNameDiv = document.createElement("h1");
+
+            let playerTeamColor = getTeamColor(player.team);
+            let playerTeamPosId = getPlayerTeamPosId(player.shortcut);
+
+            playerDiv.id = `${playerTeamColor}-player-${playerTeamPosId}`;
+            playerDiv.classList.add("player");
+            playerDiv.classList.add(playerTeamPosId);
+            playerDiv.classList.add(playerTeamColor);
+
+            playerDivBoostDiv.id = `${playerTeamColor}-player-boost-${playerTeamPosId}-background`;
+            playerDivBoostDiv.classList.add("player-boost-background");
+            playerDivBoostDiv.classList.add(playerTeamColor);
+
+            playerBoostDiv.id = `${playerTeamColor}-player-boost-${playerTeamPosId}`;
+            playerBoostDiv.classList.add("player-boost");
+            playerBoostDiv.classList.add(playerTeamColor);
+
+            playerDivNameDiv.id = `${playerTeamColor}-player-name-${playerTeamPosId}`;
+            playerDivNameDiv.classList.add("player-name");
+            playerDivNameDiv.classList.add(playerTeamColor);
+            playerDivNameDiv.textContent = player.name;
+
+            playerDivBoostDiv.appendChild(playerBoostDiv);
+            playerDiv.appendChild(playerDivBoostDiv);
+            playerDiv.appendChild(playerDivNameDiv);
+
+            let parentDiv = document.getElementById(`${playerTeamColor}-players-overview`)
+            parentDiv.appendChild(playerDiv)
+        }
+
+        /**
+         * @param {Number} teamId
+         * @return {String} Team color associated with team_id
+         */
+        function getTeamColor(teamId) {
+            return teamId == 0 ? "blue" : "orange";
+        }
+
+        /**
+         * @param {Number} playerShortcut
+         * @return {String}
+         */
+        function getPlayerTeamPosId(playerShortcut) {
+            switch(playerShortcut) {
+                case 1: return "one";
+                case 2: return "two";
+                case 3: return "three";
+                case 5: return "one";
+                case 6: return "two";
+                case 7: return "three";
+            }
+        }
+
+        /**
+         * @param {Object} players
+         */
+        function assignPlayerNames(players) {
+            Object.values(players).forEach(player => {
+                switch (player.shortcut) {
+                    case 1: $(".players-overview.blue .player.one .player-name").text(player.name); break;
+                    case 2: $(".players-overview.blue .player.two .player-name").text(player.name); break;
+                    case 3: $(".players-overview.blue .player.three .player-name").text(player.name); break;
+                    case 5: $(".players-overview.orange .player.one .player-name").text(player.name); break;
+                    case 6: $(".players-overview.orange .player.two .player-name").text(player.name); break;
+                    case 7: $(".players-overview.orange .player.three .player-name").text(player.name); break;
+                    default: break;
+                }
+            })
+        }
+
+        /**
+         * @param {Object} players
+         */
+        function updateBoostMeters(players) {
+            Object.values(players).forEach(player => {
+                switch (player.shortcut) {
+                    case 1: updatePlayerBoost(1, player.boost); break;
+                    case 2: updatePlayerBoost(2, player.boost); break;
+                    case 3: updatePlayerBoost(3, player.boost); break;
+                    case 5: updatePlayerBoost(5, player.boost); break;
+                    case 6: updatePlayerBoost(6, player.boost); break;
+                    case 7: updatePlayerBoost(7, player.boost); break;
+                    default: break;
+                }
+            })
+        }
+
+        /**
+         * @param {Number} playerShortcut 1-8 representing Player 1, 2, 3 or 4 (blue team), or 5, 6, 7 or 8 (orange team).
+         * @param {Number} boost Amount of boost Player has. Multiply 270 by 0.boost to get width needed.
+         */
+        function updatePlayerBoost(playerShortcut, boost) {
+            const maxBoostWidth = 270;
+            switch (playerShortcut) {
+                case 1: {
+                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-one");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+                case 2: {
+                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-two");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+                case 3: {
+                    let bluePlayerBoostOne = document.getElementById("blue-player-boost-three");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+                case 5: {
+                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-one");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+                case 6: {
+                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-two");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+                case 7: {
+                    let bluePlayerBoostOne = document.getElementById("orange-player-boost-three");
+                    bluePlayerBoostOne.style.width = Math.round(maxBoostWidth * (boost / 100));
+                    break;
+                }
+            }
+        }
+
+        /**
+         * @param {Boolean} isReplay
+         * @param {Object} players
+         * @param {Boolean} hasTarget
+         * @param {String} targetPlayer
+         */
+        function updateFocusedPlayer(isReplay, players, hasTarget, targetPlayer) {
+            const maxBoostDegreeRotation = 135;
+            let focusedPlayerView = document.getElementById("focused-player");
+            if (hasTarget) {
+                for (const player of Object.values(players)) {
+                    if (player.id === targetPlayer) {
+                        focusedPlayerView.style.display = isReplay === true ? "none" : "flex";
+                        let focusedPlayerName = document.getElementById("player-name");
+                        let focusedPlayerBoostFillFull = document.getElementById("boost-fill-full");
+                        let focusedPlayerBoostProgressFull = document.getElementById("boost-progress-full");
+                        let focusedPlayerBoostProgressHalf = document.getElementById("boost-progress-half");
+                        focusedPlayerName.style.color = player.team === 0 ? "rgba(44, 80, 235, 1.0)" : "rgba(228, 131, 40, 1.0)";
+                        focusedPlayerName.style.borderBottomColor = player.team === 0 ? "rgba(44, 80, 235, 1.0)" : "rgba(228, 131, 40, 1.0)";
+                        focusedPlayerBoostProgressFull.style.backgroundColor = player.team === 0 ? "rgba(44, 80, 235, 1.0)" : "rgba(228, 131, 40, 1.0)";
+                        focusedPlayerBoostProgressHalf.style.backgroundColor = player.team === 0 ? "rgba(44, 80, 235, 1.0)" : "rgba(228, 131, 40, 1.0)";
+                        $(".focused-player-container .focused-player.info .focused-player.name").text(player.name);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.score .focused-player.stat.data").text(player.score);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.goals .focused-player.stat.data").text(player.goals);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.shots .focused-player.stat.data").text(player.shots);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.assists .focused-player.stat.data").text(player.assists);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.saves .focused-player.stat.data").text(player.saves);
+                        $(".focused-player-container .focused-player.info .focused-player.stat-container.ball-touches .focused-player.stat.data").text(player.touches);
+                        $(".focused-player-container .focused-player.boost-wrap .focused-player.boost .focused-player.boost-amount").text(player.boost);
+                        /**
+                         * .focused-player.boost-fill.full,
+                         * .focused-player.boost .boost-progress {
+                         *      animation: fill ease-in-out 3s;
+                         *      transform: rotate(135deg);
+                         *  }
+                         */
+                        let boostRotation = Math.round(maxBoostDegreeRotation * (player.boost / 100));
+                        focusedPlayerBoostFillFull.style.transform = `rotate(${boostRotation}deg)`;
+                        focusedPlayerBoostProgressFull.style.transform = `rotate(${boostRotation}deg)`;
+                        focusedPlayerBoostProgressHalf.style.transform = `rotate(${boostRotation}deg)`;
+                        break;
+                    }
+                }
+            } else {
+                focusedPlayerView.style.display = "none";
+            }
+        }
+
+        /**
+         * @param {Number} seconds
+         * @return {String}
+         */
+        function convertSecondsToTime(seconds) {
+            const clockSeconds = Math.floor(seconds % 60);
+            const clockMinutes = Math.floor(seconds / 60);
+            const clockSecondsString = clockSeconds < 10 ? `0${clockSeconds}` : clockSeconds.toString();
+            return `${clockMinutes}:${clockSecondsString}`;
+        };
+    </script>
+</html>

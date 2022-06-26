@@ -1,0 +1,506 @@
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    margin: 0;
+}
+
+h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+    margin: 0;
+}
+
+
+
+.match-header-area {
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+
+.match-header {
+    display: flex;
+    align-items: center;
+}
+
+.match-title {
+    width: 800px;
+    height: 50px;
+    background-color: rgba(14, 54, 96, 0.7);
+    justify-content: center;
+}
+
+.match-information {
+    display: flex;
+}
+
+.team {
+    display: flex;
+    width: 525px;
+}
+
+.team-blue-item {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-orange-item {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    display: flex;
+}
+
+.team-name {
+    width: 350px;
+    color: white;
+    font-size: 36px;
+    text-align: center;
+}
+
+.team-score {
+    width: 75px;
+    color: white;
+    font-size: 52px;
+    text-align: center;
+}
+
+.clock {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.match-series {
+    display: flex;
+    width: 1230px;
+    align-items: center;
+    justify-content: center;
+}
+
+.series-item {
+    height: 40px;
+}
+
+.series-scorebar {
+    display: flex;
+    background-color: rgba(177, 91, 181, 0.4);
+    align-items: center;
+    justify-content: center;
+}
+
+.series-match-empty {
+    width: 60px;
+    height: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.series-match-full {
+    width: 60px;
+    height: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+}
+
+.series-match-full.blue {
+    background-color: rgba(44, 80, 235, 1.0);
+    border-color: rgba(44, 80, 235, 1.0);
+}
+
+.series-match-full.orange {
+    background-color: rgba(228, 131, 40, 1.0);
+    border-color: rgba(228, 131, 40, 1.0);
+}
+
+.players-overview {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    margin: 25px;
+}
+
+.player {
+    height: 80px;
+    background-color: rgba(36, 36, 36, 0.8);
+    margin-top: 25px;
+}
+
+.player.orange {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.player-boost-background {
+    width: 270px;
+    height: 20px;
+    margin-top: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.player-boost-background.blue {
+    margin-left: 10px;
+}
+
+.player-boost-background.orange {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.player-boost {
+    height: 20px;
+}
+
+.player-boost.blue {
+    background-color: rgba(44, 80, 235, 1.0);
+}
+
+.player-boost.orange {
+    background-color: rgba(228, 131, 40, 1.0);
+}
+
+.player-name.blue {
+    margin-left: 10px;
+}
+
+.player-name.orange {
+    margin-right: 10px;
+}
+
+.focused-player-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 450px;
+    right: 50px;
+    bottom: 50px;
+    padding: 15px;
+    background-color: rgb(35, 15, 36, 1.0);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-top-right-radius: 140px;
+    border-bottom-right-radius: 140px;
+}
+
+.focused-player.info {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+}
+
+.focused-player.stat-container {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+}
+
+.focused-player.name {
+    border-bottom: 2px solid white;
+}
+
+.focused-player.stat {
+    font-size: 24px;
+}
+
+.focused-player.boost-wrap {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    margin-left: 25px;
+    background: rgba(199, 199, 199, 0.7);
+    border-radius: 50%;
+    align-self: center;
+}
+
+.focused-player.boost-fill,
+.focused-player.boost-progress {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.focused-player.boost-progress {
+    clip: rect(0px, 150px, 150px, 75px);
+    background-color: rgba(44, 80, 235, 1.0);
+}
+
+.focused-player.boost-fill {
+    clip: rect(0px, 75px, 150px, 0px);
+}
+
+.focused-player.boost-fill.full,
+.focused-player.boost .boost-progress {
+    animation: fill 0 linear 0 1 normal forwards;
+}
+
+@keyframes fill {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(135deg);
+    }
+}
+
+.focused-player.boost-wrap .boost-amount {
+    display: flex;
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: white;
+    background-color: rgb(35, 15, 36, 1.0);
+    border-radius: 50%;
+    line-height: 120px;
+    text-align: center;
+    z-index: 1;
+    font-weight: 700;
+}
+
+.focused-player.boost-wrap::after {
+    display: block;
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    right: 13px;
+    bottom: 59px;
+    content: "";
+    background-color: rgb(35, 15, 36, 1.0);
+    border-bottom-right-radius: 32px;
+}
+
+.replay-header {
+    position: absolute;
+    display: flex;
+    width: 1920px;
+    height: 120px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(177, 91, 181, 0.4);
+}
+
+.replay-footer {
+    position: absolute;
+    display: flex;
+    width: 1920px;
+    height: 120px;
+    flex-direction: column;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(14, 54, 96, 0.7);
+}
+
+.replay-extra-goal-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+
+.replay-indicator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.replay-red-dot {
+    width: 26px;
+    height: 26px;
+    margin-right: 15px;
+    background-color: red;
+    border-radius: 14px;
+}
+
+
+
+#full-screen {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+}
+
+#left-half-screen {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 960px;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+}
+
+#right-half-screen {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 960px;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#replay {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+}
+
+#match-header {
+    flex-direction: column;
+}
+
+#match-title-text {
+    font-size: 24px;
+}
+
+#match-information {
+    flex-direction: row;
+}
+
+#team-blue {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+#team-blue-logo {
+    background-color: rgba(44, 80, 235, 0.6);
+}
+
+#team-blue-name {
+    background-image: url("./assets/general_background.png");
+    background-size: cover;
+}
+
+#team-blue-score {
+    background-color: rgba(44, 80, 235, 1.0);
+}
+
+#match-clock {
+    background-image: url("./assets/general_background.png");
+    background-size: cover;
+    width: 200px;
+    color: white;
+    font-size: 46px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#team-orange {
+    flex-direction: row;
+    align-items: center;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+#team-orange-logo {
+    background-color: rgba(228, 131, 40, 0.6);
+}
+
+#team-orange-name {
+    background-image: url("./assets/general_background.png");
+    background-size: cover;
+}
+
+#team-orange-score {
+    background-color: rgba(228, 131, 40, 1.0);
+}
+
+#team-blue-series {
+    flex-direction: row;
+}
+
+#series-match-end-blue {
+    margin-left: 25px;
+}
+
+#series-information {
+    width: 350px;
+    background-color: white;
+    font-size: 32px;
+    text-align: center;
+}
+
+#team-orange-series {
+    flex-direction: row;
+}
+
+#series-match-end-orange {
+    margin-right: 25px
+}
+
+#blue-player-boost-one {
+    width: 91px;
+}
+
+#blue-player-boost-two {
+    width: 91px;
+}
+
+#blue-player-boost-three {
+    width: 91px;
+}
+
+#orange-player-boost-one {
+    width: 90px;
+}
+
+#orange-player-boost-two {
+    width: 91px;
+}
+
+#orange-player-boost-three {
+    width: 91px;
+}
+
+#focused-player {
+    display: none;
+}
+
+#scorer-player-name {
+    font-size: 38px;
+    padding-top: 5px;
+}
+
+#scored-ball-speed {
+    margin-right: 30px;
+    font-size: 26px;
+}
+
+#assister-player-name {
+    font-size: 26px;
+}
